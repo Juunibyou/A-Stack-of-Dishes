@@ -6,9 +6,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 
 
-class DishTest{
+public class AppTest{
 
-    private DishStack stack;
+    DishStack stack;
 
     @BeforeEach
     void set(){
@@ -48,13 +48,23 @@ class DishTest{
 
             Dish peekdish = stack.peek();
 
-            assertEquals("A dish with two fish pattern on it", peekdish.getDescription());
+            assertEquals("A dish with two fish patterns on it", peekdish.getDescription());
         }
 
-        //EMPTY OR FULL TEST
+        //EMPTY TEST
         @Test
         void emptyPop(){
-            assertEquals("Stack is empty... Can't pop.", stack.pop());
+            assertNull(stack.pop());
+        }
+
+        @Test
+        void testPushFullStack() {
+
+            for (int i = 0; i < 10; i++) {
+                stack.push(new Dish("Dish #" + (i + 1)));
+            }
+    
+            assertEquals(10, stack.size());
         }
 
 }
